@@ -1,10 +1,12 @@
 #include "grade.h"
 #include "Student_info.h"
 #include "median.h"
+#include <list>
 #include <stdexcept>
 #include <vector>
 
 using std::domain_error;
+using std::list;
 using std::vector;
 
 // code for grade(double, double, double) function
@@ -29,9 +31,9 @@ double grade(const Student_info &s) {
 bool fgrade(const Student_info &s) { return grade(s) < 60; }
 
 // separate passing and failing student records
-vector<Student_info> extract_fails(vector<Student_info> &students) {
-  vector<Student_info> fail;
-  vector<Student_info>::iterator iter = students.begin();
+list<Student_info> extract_fails(list<Student_info> &students) {
+  list<Student_info> fail;
+  list<Student_info>::iterator iter = students.begin();
 
   while (iter != students.end()) {
     if (fgrade(*iter)) {
