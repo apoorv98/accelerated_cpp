@@ -2,6 +2,7 @@
 
 // source file for Student_info-related functions
 
+using std::find;
 using std::istream;
 using std::vector;
 
@@ -35,4 +36,8 @@ istream &read(istream &is, Student_info &s) {
 // compare student names which will be used to sort them
 bool compare(const Student_info &x, const Student_info &y) {
   return x.name < y.name;
+}
+
+bool did_all_hw(const Student_info &s) {
+  return ((find(s.homework.begin(), s.homework.end(), 0)) == s.homework.end());
 }
