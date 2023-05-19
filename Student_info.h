@@ -2,7 +2,6 @@
 #define STUDENT_INFO_H_
 
 // Student_info.h header file
-#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>

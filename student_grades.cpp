@@ -48,6 +48,12 @@ int main() {
     return 1;
   }
 
+  // do the analyses
+  write_analysis(cout, "median", median_analysis, did, didnt);
+  write_analysis(cout, "average", average_analysis, did, didnt);
+  write_analysis(cout, "median of homework turned in",
+                 optimistic_median_analysis, did, didnt);
+
   // alphabetize the student records
   sort(students.begin(), students.end(), compare);
 

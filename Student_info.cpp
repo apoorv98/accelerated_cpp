@@ -1,6 +1,7 @@
 #include "Student_info.h"
 
 // source file for Student_info-related functions
+#include <algorithm>
 
 using std::find;
 using std::istream;
