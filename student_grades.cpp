@@ -21,7 +21,7 @@ using std::string;
 using std::vector;
 
 int main() {
-  vector<Student_info> students;
+  vector<Student_info> students, did, didnt;
   Student_info student_record;
   string::size_type length_of_longest_name = 0;
 
@@ -31,6 +31,21 @@ int main() {
     length_of_longest_name =
         max(length_of_longest_name, student_record.name.size());
     students.push_back(student_record);
+    if (did_all_hw(student_record))
+      did.push_back(student_record);
+    else {
+      didnt.push_back(student_record);
+    }
+  }
+
+  // check that both groups contain data
+  if (did.empty()) {
+    cout << "No student did all the homework!" << endl;
+    return 1;
+  }
+  if (didnt.empty()) {
+    cout << "Every student did all the homework!" << endl;
+    return 1;
   }
 
   // alphabetize the student records
