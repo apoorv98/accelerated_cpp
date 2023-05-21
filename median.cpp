@@ -9,8 +9,8 @@ using std::vector;
 
 // compute the median of a vector<double>
 // note that calling this function copies the entire argument vector
-double median(vector<double> vec) {
-  typedef vector<double>::size_type vec_sz;
+template <class T> T median(vector<T> vec) {
+  typedef typename vector<T>::size_type vec_sz;
 
   vec_sz size = vec.size();
   if (size == 0)
