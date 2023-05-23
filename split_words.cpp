@@ -12,9 +12,8 @@ bool space(char c) { return isspace(c); }
 // false if the argument is whitespace, true otherwise
 bool not_space(char c) { return !isspace(c); }
 
-vector<string> split(const string &str) {
+template <class Out> void split(const string &str, Out os) {
   typedef string::const_iterator iter;
-  vector<string> ret;
 
   iter i = str.begin();
   while (i != str.end()) {
@@ -26,8 +25,7 @@ vector<string> split(const string &str) {
 
     // copy the characters in [i, j)
     if (i != str.end())
-      ret.push_back(string(i, j));
+      *os++ = string(i, j);
     i = j;
   }
-  return ret;
 }
