@@ -6,15 +6,21 @@
 #include <string>
 #include <vector>
 
-struct Student_info {
-  std::string name;
+class Student_info {
+private:
+  std::string n;
   double midterm, final;
   std::vector<double> homework;
+
+public:
+  Student_info();               // construct empty Student_info object
+  Student_info(std::istream &); // construct one by reading a stream
+  std::istream &read(std::istream &);
+  bool valid() const { return !homework.empty(); }
+  double grade() const;
+  std::string name() const { return n; }
 };
 
 bool compare(const Student_info &, const Student_info &);
-std::istream &read(std::istream &, Student_info &);
-std::istream &read_hw(std::istream &, std::vector<double> &);
-bool did_all_hw(const Student_info &);
 
 #endif // STUDENT_INFO_H_
