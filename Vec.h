@@ -14,6 +14,11 @@ public:
   ~Vec() { uncreate(); }
 
   size_type size() const { return limit - data; }
+  void push_back(const T &val) {
+    if (avail == limit) // get space if needed
+      grow();
+    unchecked_append(val); // append the new element
+  }
 
   T &operator[](size_type i) { return data[i]; }
   const T &operator[](size_type i) const { return data[i]; }
@@ -27,6 +32,7 @@ public:
 
 private:
   iterator *data;  // first element in the Vec
+  iterator *avail; // pointer to (one past) the last constructed element
   iterator *limit; // one past the last element in Vec
 };
 
