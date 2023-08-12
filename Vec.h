@@ -1,6 +1,10 @@
 #ifndef VEC_H_
 #define VEC_H_
 
+#include <memory>
+
+using std::allocator;
+
 template <class T> class Vec {
 public:
   typedef T *iterator;
@@ -34,6 +38,21 @@ private:
   iterator *data;  // first element in the Vec
   iterator *avail; // pointer to (one past) the last constructed element
   iterator *limit; // one past the last element in Vec
+
+  // facilities for memory allocation
+  allocator<T> alloc; // object to handle memory allocation
+
+  // allocate and initialize the underlying array
+  void create();
+  void create(size_type, const T &);
+  void create(const_iterator, const_iterator);
+
+  // destroy the elements in the array and free the memory
+  void uncreate();
+
+  // support functions for push_back
+  void grow();
+  void unchecked_append(const T &);
 };
 
 #endif // VEC_H_
