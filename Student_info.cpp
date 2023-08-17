@@ -11,10 +11,24 @@ Student_info::Student_info() : midterm(0), final(0) {}
 
 Student_info::Student_info(istream &is) { read(is); }
 
-istream &Student_info::read(istream &in) {
-  in >> n >> midterm >> final;
-  read_hw(in, homework);
-  return in;
+// istream &Student_info::read(istream &in) {
+//   in >> n >> midterm >> final;
+//   read_hw(in, homework);
+//   return in;
+// }
+
+istream &Student_info::read(istream &is) {
+  delete cp; // delete previous object if any
+
+  char ch;
+  is >> ch; // get record type
+
+  if (ch == 'U') {
+    cp = new Core(is);
+  } else {
+    cp = new Grad(is);
+  }
+  return is;
 }
 
 double Student_info::grade() const { return ::grade(midterm, final, homework); }
@@ -39,6 +53,23 @@ istream &read_hw(istream &in, vector<double> &hw) {
 // compare student names which will be used to sort them
 bool compare(const Student_info &x, const Student_info &y) {
   return x.name() < y.name();
+}
+
+Student_info::Student_info(const Student_info &s) : cp(0) {
+  if (s.cp)
+    cp = s.cp->clone();
+}
+
+Student_info &Student_info::operator=(const Student_info &s) {
+  if (&s != this) {
+    delete cp;
+    if (s.cp)
+      cp = s.cp->clone();
+    else {
+      cp = 0;
+    }
+  }
+  return *this;
 }
 
 /*
