@@ -2,6 +2,7 @@
 #define PICTURE_H_
 
 #include "Ptr.h"
+#include <iostream>
 #include <vector>
 
 // private classes for use in implementation only
@@ -16,6 +17,10 @@ class HCat_Pic : public Pic_base {};
 class Picture {
 public:
   Picture(const std::vector<std::string> & = std::vector<std::string>());
+  Picture frame(const Picture &);
+  Picture hcat(const Picture &, const Picture &);
+  Picture vcat(const Picture &, const Picture &);
+  std::ostream &operator<<(std::ostream &, const Picture &);
 
 private:
   Ptr<Pic_base> p;
