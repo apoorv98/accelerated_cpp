@@ -1,6 +1,7 @@
 #ifndef CORE_H_
 #define CORE_H_
 
+#include "Handle.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -44,6 +45,10 @@ bool compare(const Core &c1, const Core &c2) { return c1.name() < c2.name(); }
 
 bool compare_Core_ptrs(const Core *cp1, const Core *cp2) {
   return compare(*cp1, *cp2);
+}
+
+bool compare_Core_handles(const Handle<Core> &c1, const Handle<Core> &c2) {
+  return compare(*c1, *c2);
 }
 
 bool compare_grades(const Core &c1, const Core &c2) {

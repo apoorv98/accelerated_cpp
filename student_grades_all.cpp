@@ -21,8 +21,8 @@ using std::string;
 using std::vector;
 
 int main() {
-  vector<Core *> students;
-  Core *record;
+  vector<Handle<Core>> students;
+  Handle<Core> record;
   char ch;
   string::size_type length_of_longest_name = 0;
 
@@ -39,10 +39,10 @@ int main() {
   }
 
   // alphabetize the student records
-  sort(students.begin(), students.end(), compare_Core_ptrs);
+  sort(students.begin(), students.end(), compare_Core_handles);
 
   // write the names and grades
-  for (vector<Core *>::size_type i = 0; i != students.size(); ++i) {
+  for (vector<Handle<Core>>::size_type i = 0; i != students.size(); ++i) {
     // write the name, padded on the right to length_of_longest_name + 1 chars
     cout << students[i]->name()
          << string(length_of_longest_name + 1 - students[i]->name().size(),
@@ -57,7 +57,6 @@ int main() {
       cout << e.what();
     }
     cout << endl;
-    delete students[i]; // free the object allocated when reading
   }
 
   return 0;

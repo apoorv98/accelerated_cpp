@@ -7,10 +7,6 @@ using std::find;
 using std::istream;
 using std::vector;
 
-Student_info::Student_info() : midterm(0), final(0) {}
-
-Student_info::Student_info(istream &is) { read(is); }
-
 // istream &Student_info::read(istream &in) {
 //   in >> n >> midterm >> final;
 //   read_hw(in, homework);
@@ -18,8 +14,6 @@ Student_info::Student_info(istream &is) { read(is); }
 // }
 
 istream &Student_info::read(istream &is) {
-  delete cp; // delete previous object if any
-
   char ch;
   is >> ch; // get record type
 
@@ -53,11 +47,6 @@ istream &read_hw(istream &in, vector<double> &hw) {
 // compare student names which will be used to sort them
 bool compare(const Student_info &x, const Student_info &y) {
   return x.name() < y.name();
-}
-
-Student_info::Student_info(const Student_info &s) : cp(0) {
-  if (s.cp)
-    cp = s.cp->clone();
 }
 
 Student_info &Student_info::operator=(const Student_info &s) {
