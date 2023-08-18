@@ -6,7 +6,15 @@
 #include <vector>
 
 // private classes for use in implementation only
-class Pic_base {};
+class Pic_base {
+  // no public interface
+  typedef std::vector<std::string>::size_type ht_sz;
+  typedef std::string::size_type wd_sz;
+
+  virtual wd_sz width() const = 0;
+  virtual ht_sz height() const = 0;
+  virtual void display(std::ostream &, ht_sz, bool) const = 0;
+};
 
 class String_Pic : public Pic_base {};
 class Frame_Pic : public Pic_base {};
