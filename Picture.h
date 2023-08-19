@@ -7,6 +7,13 @@
 
 // private classes for use in implementation only
 class Pic_base {
+protected:
+  static void pad(std::ostream &os, wd_sz beg, wd_sz end) {
+    while (beg != end) {
+      os << " ";
+      ++beg;
+    }
+  }
   // no public interface
   typedef std::vector<std::string>::size_type ht_sz;
   typedef std::string::size_type wd_sz;
@@ -17,11 +24,12 @@ class Pic_base {
 };
 
 class String_Pic : public Pic_base {
+  friend class Picture;
   std::vector<std::string> data;
-  String_Pic(const std::vector<std : string & v>) : data(v) {}
+  String_Pic(const std::vector<std::string & v>) : data(v) {}
 
+  ht_sz height() const { return data.size(); };
   wd_sz width() const;
-  ht_sz height() const;
   void display(std::ostream &, ht_sz, bool) const;
 };
 
