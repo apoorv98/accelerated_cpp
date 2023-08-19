@@ -66,6 +66,7 @@ public:
 
 private:
   Ptr<Pic_base> p;
+  Picture(Pic_base *ptr) : p(ptr) {}
 };
 
 #endif // PICTURE_H_
