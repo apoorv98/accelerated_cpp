@@ -7,6 +7,12 @@
 
 // private classes for use in implementation only
 class Pic_base {
+  friend std::ostream &operator<<(std::ostream &, const Picture &);
+  friend class Frame_Pic;
+  friend class HCat_Pic;
+  friend class VCat_Pic;
+  friend class String_Pic;
+
 protected:
   static void pad(std::ostream &os, wd_sz beg, wd_sz end) {
     while (beg != end) {
@@ -68,12 +74,13 @@ class HCat_Pic : public Pic_base {
 
 // public interface class and operations
 class Picture {
+  friend std::ostream &operator<<(std::ostream &, const Picture &);
+  friend Picture frame(const Picture &);
+  friend Picture hcat(const Picture &, const Picture &);
+  friend Picture vcat(const Picture &, const Picture &);
+
 public:
   Picture(const std::vector<std::string> & = std::vector<std::string>());
-  Picture frame(const Picture &);
-  Picture hcat(const Picture &, const Picture &);
-  Picture vcat(const Picture &, const Picture &);
-  std::ostream &operator<<(std::ostream &, const Picture &);
 
 private:
   Ptr<Pic_base> p;
