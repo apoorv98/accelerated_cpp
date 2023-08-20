@@ -35,11 +35,12 @@ class String_Pic : public Pic_base {
 
 class Frame_Pic : public Pic_base {
   // no public interface
+  friend Picture frame(const Picture &);
   Ptr<Pic_base> p;
   Frame_Pic(const Ptr<Pic_base> &pic) : p(pic) {}
 
-  wd_sz width() const;
-  ht_sz height() const;
+  wd_sz width() const { return p->width() + 4; }
+  ht_sz height() const { return p->height() + 4; }
   void display(std::ostream &, ht_sz, bool) const;
 };
 
